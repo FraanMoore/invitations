@@ -1,10 +1,10 @@
 import './App.css';
-import EnvelopCard from './components/envelopCard';
+import EnvelopeCard from './components/EnvelopeCard';
 
 
 function App() {
   return ( 
-    <EnvelopCard/>
+    <EnvelopeCard/>
   );
 }
 
