@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Body from './Body';
 
 const EnvelopCard = () => {
     const [open, setOpen] = useState(false);
@@ -13,6 +14,10 @@ const EnvelopCard = () => {
             <EnvelopeContainer>
                 {open && (
                     <>
+                        <BodyWrapper>
+
+                        <Body />
+                        </BodyWrapper>
                         <FrontEnvelope className='front-envelope'>
                             <CurvedLine viewBox="0 0 500 30" flapopen="true">
                                 <svg className="flap-open">
@@ -25,32 +30,32 @@ const EnvelopCard = () => {
                                     />
                                 </svg>
                             </CurvedLine>
-                                        <OpenSeal className='button-seal-top' onClick={handleSealClick}></OpenSeal>
+                            <OpenSeal className='button-seal-top' onClick={handleSealClick}></OpenSeal>
                         </FrontEnvelope>
                         <BackEnvelope className='back-envelope'>
-                         <CurvedLine viewBox="0 0 500 30" flapopen="true">
-                            <g className="flap-open-bottom">
-                                <path
-                                    className="fill"
-                                    d="M0,15 Q125,30 250,15 Q375,0 500,15 L500,30 L0,30 Z"
-                                    fill="#F2E7DA"
-                                />
-                            </g>
-                        </CurvedLine>
-                    </BackEnvelope>
+                            <CurvedLine viewBox="0 0 500 30" flapopen="true">
+                                <g className="flap-open-bottom">
+                                    <path
+                                        className="fill"
+                                        d="M0,15 Q125,30 250,15 Q375,0 500,15 L500,30 L0,30 Z"
+                                        fill="#F2E7DA"
+                                    />
+                                </g>
+                            </CurvedLine>
+                        </BackEnvelope>
                     </>
                 )}
                 <Envelope className="envelop">
-                        <CurvedLine viewBox="0 0 500 30" className={open ? 'open' : ''}>
-                            <g className="flap">
-                                <path d="M0,29
-             Q125,-1 250,14 Q375,29 500,9
-             L500," stroke="#59603b" strokeWidth="1" fill="transparent" />
-                            </g>
-                        </CurvedLine>
+                    <CurvedLine viewBox="0 0 500 30" className={open ? 'open' : ''}>
+                        <g className="flap">
+                            <path d="M0,29
+                                    Q125,-1 250,14 Q375,29 500,9
+                                    L500," stroke="#59603b" strokeWidth="1" fill="transparent" />
+                        </g>
+                    </CurvedLine>
                     <Seal className={`button-seal ${open ? 'open' : ''}`} onClick={handleSealClick}>
-                            F&F
-                        </Seal>
+                        F&F
+                    </Seal>
                 </Envelope>
             </EnvelopeContainer>
         </Container>
@@ -148,13 +153,25 @@ const OpenSeal = styled.button`
     top: -5%;
     border-radius: 50%;
     transform: translate(-50%, 0); 
-   // z-index: 2;
    
     background: radial-gradient(circle at 30% 30%, #b88955, #9b6d3d);
     border: 4px solid #AB7F4D;
     color: #5c3b09;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+
+        &::before {
+        content: '';
+        position: absolute;
+        top: 28%; 
+        left: 50%; 
+        width: 150%;
+        height: 100%;
+        background: #738259;
+        clip-path: polygon(50% 1, 0 100%, 100% 100%);
+        transform: translate(-50%, 0) rotate(185deg);
+    }
+
     `;
 
 const Seal = styled.button`
@@ -188,4 +205,14 @@ const Seal = styled.button`
     display: none;
     }
     
+`;
+
+const BodyWrapper = styled.div`
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    width: auto;
+    height: auto;
+    margin: 3%;
+    pointer-events: auto;
 `;
