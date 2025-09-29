@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { getRandomGuestName } from "../common/guestList";
-import { Link } from "react-router-dom";
+import { guests } from "../common/guestList";
 import { useState, useEffect } from "react";
 
 const imageList = [
@@ -62,6 +62,10 @@ const BodyIdeaTwo = () => {
     );
   };
   const randomGuest = getRandomGuestName();
+
+  const guestObj = guests.find((g) => g.name === randomGuest);
+  const isPlural = guestObj && guestObj.cantInvites === true ? "sean" : "seas";
+
   return (
     <Container>
       <BodyContainer>
@@ -76,8 +80,8 @@ const BodyIdeaTwo = () => {
               <span>Francisca</span>
             </h2>
             <p>
-              {randomGuest}, queremos que seas parte de nuestra celebración el
-              próximo
+              {randomGuest}, queremos que {isPlural} parte de nuestra
+              celebración el próximo
             </p>
             <Date>
               <p className="day2">SABADO</p>
