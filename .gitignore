@@ -1,6 +1,9 @@
 # Ignorar imágenes privadas
 src/common/images/
 
+#ignorar lista invitados
+src/common/guestList.js
+
 # dependencies
 /node_modules
 /.pnp
